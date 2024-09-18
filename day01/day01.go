@@ -15,7 +15,7 @@ func Solve(input string) {
 		total += lineNumber(line)
 	}
 
-	fmt.Printf("Day 01 solution is %d", total)
+	fmt.Printf("Day 01 solution is %d\n", total)
 
 }
 
@@ -30,10 +30,11 @@ func lineNumber(line string) int {
 
 	for i := 0; i < length; i++ {
 		if firstDigit < 0 && isDigit(rune(line[i])) {
-			firstDigit = int(line[i]) + 48 // convert the digit byte into the equivalent int
+			firstDigit = int(line[i]) - 48 // convert the digit byte into the equivalent int
 		}
-		if lastDigit < 0 && isDigit(rune(line[length-i])) {
-			lastDigit = int(line[length-i]) + 48 // convert the digit byte into the equivalent int
+		j := length - 1 - i
+		if lastDigit < 0 && isDigit(rune(line[j])) {
+			lastDigit = int(line[j]) - 48 // convert the digit byte into the equivalent int
 		}
 		if firstDigit >= 0 && lastDigit >= 0 {
 			break

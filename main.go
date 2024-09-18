@@ -31,7 +31,7 @@ func init() {
 		} else {
 			inputFile += fmt.Sprintf("day%d", exercise)
 		}
-		fmt.Printf("Using default path: %s", inputFile) // notifying user
+		fmt.Printf("Using default path: %s\n", inputFile) // notifying user
 	}
 }
 
@@ -47,6 +47,6 @@ func main() {
 	case 1:
 		day01.Solve(string(inputBytes))
 	default:
-		fmt.Printf("Day number %d is not implemented yet", exercise)
+		fmt.Printf("Day number %d is not implemented yet\n", exercise)
 	}
 }
