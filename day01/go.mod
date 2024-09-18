@@ -1,3 +1,3 @@
-module aoc_Go/day01
+module github.com/ballihautt/aoc_23_go/day01
 
 go 1.23.1

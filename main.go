@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	d01 "./day01/"
+	"github.com/ballihautt/aoc_23_go/day01"
 )
 
 var (
@@ -27,9 +27,9 @@ func init() {
 			inputFile = "./input/" // default path for inputs
 		}
 		if exercise < 10 { // paddle with 0 as each file is dayXX
-			inputFile += fmt.Sprint("day0%d", exercise)
+			inputFile += fmt.Sprintf("day0%d", exercise)
 		} else {
-			inputFile += fmt.Sprint("day%d", exercise)
+			inputFile += fmt.Sprintf("day%d", exercise)
 		}
 		fmt.Printf("Using default path: %s", inputFile) // notifying user
 	}
@@ -39,14 +39,14 @@ func main() {
 
 	inputBytes, err := os.ReadFile(inputFile)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error reading `%s`: %w", inputFile, err)
+		fmt.Fprintf(os.Stderr, "Error reading `%s`: %v", inputFile, err)
 		return
 	}
 
 	switch exercise {
 	case 1:
-		d01.Solve(string(inputBytes))
+		day01.Solve(string(inputBytes))
 	default:
-		fmt.Printf("%d is not implemented yet")
+		fmt.Printf("Day number %d is not implemented yet", exercise)
 	}
 }
