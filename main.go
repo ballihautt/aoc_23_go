@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"github.com/ballihautt/aoc_23_go/day01"
+	"github.com/ballihautt/aoc_23_go/day02"
 )
 
 var (
@@ -46,6 +47,8 @@ func main() {
 	switch exercise {
 	case 1:
 		day01.Solve(string(inputBytes))
+	case 2:
+		day02.Solve(string(inputBytes))
 	default:
 		fmt.Printf("Day number %d is not implemented yet\n", exercise)
 	}
