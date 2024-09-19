@@ -15,6 +15,7 @@ const (
 func Solve(input string) {
 	var (
 		validGamesCount uint
+		powerSum        uint
 	)
 
 	lines := strings.Split(input, "\n")
@@ -22,9 +23,57 @@ func Solve(input string) {
 		if isGamePossible(line) {
 			validGamesCount += uint(i) + 1
 		}
+		powerSum += power(line)
 	}
-	fmt.Printf("Day 02 solution is %d\n", validGamesCount)
+	fmt.Printf("Day 02 solution 1 is %d\n", validGamesCount)
+	fmt.Printf("Day 02 solution 2 is %d\n", powerSum)
 
+}
+
+// power calculates the power of the minimum set.
+func power(line string) uint {
+	dotIdx := strings.Index(line, ":") // gets the index of ':' so the beginning can be trimmed.
+	if dotIdx != -1 {
+		line = line[dotIdx+1:] // trims at dotIdx + 1 to include the colon.
+	}
+
+	sets := strings.Split(line, ";")
+	red, green, blue := minSet(sets)
+
+	minPower := red * green * blue
+	return minPower
+}
+
+// minSet returns the minimum set possible.
+func minSet(sets []string) (red, green, blue uint) {
+	for _, set := range sets {
+		r, g, b := values(set)
+		red = max(red, r)
+		green = max(green, g)
+		blue = max(blue, b)
+	}
+	return
+}
+
+// values gets the value of the set.
+func values(set string) (red, green, blue uint) {
+	for _, subset := range strings.Split(set, ",") {
+		subset = subset[1:] // trims the leading space which is present after each ponctuation.
+		parts := strings.Split(subset, " ")
+		if len(parts) != 2 {
+			panic("Unsupported non 2-length subset.")
+		}
+		n, _ := strconv.Atoi(parts[0])
+		switch parts[1] {
+		case "red":
+			red += uint(n)
+		case "green":
+			green += uint(n)
+		case "blue":
+			blue += uint(n)
+		}
+	}
+	return
 }
 
 // isGamePossible determines if this game is a possible play.
