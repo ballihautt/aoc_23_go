@@ -1,4 +1,4 @@
-package day02
+package days
 
 import (
 	"fmt"
@@ -12,7 +12,8 @@ const (
 	blueCubes  = 14 // --
 )
 
-func Solve(input string) {
+// Resolve Aoc 2023 day 2 challenges.
+func Day02(input string) {
 	var (
 		validGamesCount uint
 		powerSum        uint

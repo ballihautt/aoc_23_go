@@ -1,4 +1,4 @@
-package day01
+package days
 
 import (
 	"fmt"
@@ -21,8 +21,8 @@ var digits map[string]int = map[string]int{
 	"nine":  9,
 }
 
-// Resolve Aoc 2023 day 01 challenge
-func Solve(input string) {
+// Resolve Aoc 2023 day 01 challenge.
+func Day01(input string) {
 	var total int
 
 	lines := strings.Split(input, "\n")

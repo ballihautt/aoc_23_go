@@ -5,8 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/ballihautt/aoc_23_go/day01"
-	"github.com/ballihautt/aoc_23_go/day02"
+	"github.com/ballihautt/aoc_23_go/days"
 )
 
 var (
@@ -46,9 +45,11 @@ func main() {
 
 	switch exercise {
 	case 1:
-		day01.Solve(string(inputBytes))
+		days.Day01(string(inputBytes))
 	case 2:
-		day02.Solve(string(inputBytes))
+		days.Day02(string(inputBytes))
+	case 3:
+		days.Day03(string(inputBytes))
 	default:
 		fmt.Printf("Day number %d is not implemented yet\n", exercise)
 	}
