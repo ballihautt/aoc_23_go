@@ -7,8 +7,11 @@ import (
 
 // Resolves Aoc 2023 day 03 challenges.
 func Day03(input string) {
-	var sum int
-	var numbers []int
+	var (
+		sum          int
+		gearRatioSum uint
+		numbers      []int
+	)
 
 	engineMap := strings.Split(input, "\n")
 
@@ -19,11 +22,19 @@ func Day03(input string) {
 				for _, n := range numbers {
 					sum += n
 				}
+				if rune(engineMap[j][i]) == '*' && len(numbers) > 1 {
+					grs := 1
+					for _, n := range numbers {
+						grs *= n
+					}
+					gearRatioSum += uint(grs)
+				}
 			}
 		}
 	}
 
 	fmt.Printf("Day 03 solution 1 is %d\n", sum)
+	fmt.Printf("Day 03 solution 2 is %d\n", gearRatioSum)
 }
 
 // isSymbol returns true if the rune is not a digit nor a dot.
