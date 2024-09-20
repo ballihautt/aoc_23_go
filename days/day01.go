@@ -89,12 +89,3 @@ func isNumber(s string) int {
 	}
 	return -1
 }
-
-// isDigit determines if the character is a digit or not.
-func isDigit(c rune) bool {
-	if c >= '0' && c <= '9' {
-		return true
-	} else {
-		return false
-	}
-}
