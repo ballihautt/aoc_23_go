@@ -42,14 +42,17 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error reading `%s`: %v", inputFile, err)
 		return
 	}
+	input := string(inputBytes)
 
 	switch exercise {
 	case 1:
-		days.Day01(string(inputBytes))
+		days.Day01(input)
 	case 2:
-		days.Day02(string(inputBytes))
+		days.Day02(input)
 	case 3:
-		days.Day03(string(inputBytes))
+		days.Day03(input)
+	case 4:
+		days.Day04(input)
 	default:
 		fmt.Printf("Day number %d is not implemented yet\n", exercise)
 	}

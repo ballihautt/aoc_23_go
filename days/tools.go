@@ -1,6 +1,9 @@
 package days
 
-import "strconv"
+import (
+	"strconv"
+	"strings"
+)
 
 // isDigit determines if the character is a digit or not.
 func isDigit(c rune) bool {
@@ -33,4 +36,12 @@ func extractNumber(s string, i int) int {
 		panic("extractNumber string to int conversion error")
 	}
 	return ret
+}
+
+func trimId(line string) string {
+	dotIdx := strings.Index(line, ":") // gets the index of ':' so the beginning can be trimmed.
+	if dotIdx != -1 {
+		line = line[dotIdx+1:] // trims at dotIdx + 1 to include the colon.
+	}
+	return line
 }
