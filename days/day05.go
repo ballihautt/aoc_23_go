@@ -12,7 +12,8 @@ func Day05(input string) {
 
 	numbers := getSeeds(blocks[0]) // first block is the line of seeds.
 
-	for _, block := range blocks[1:] {
+	for i, block := range blocks[1:] {
+		fmt.Printf("Block %d", i)
 		numbers = transform(numbers, block)
 	}
 
@@ -30,13 +31,22 @@ func Day05(input string) {
 func getSeeds(block string) []uint {
 	words := strings.Split(block, " ") // line has format : `seed: xx xxx xx xxxx x xx`
 	seeds := words[1:]                 // removes leading `seed:`, so only seed numbers remain.
-	var seedsUint []uint = make([]uint, len(seeds))
+	var seedsUint []uint
 	for i, seed := range seeds {
+		if i%2 == 1 {
+			continue
+		}
 		s, err := strconv.Atoi(seed)
 		if err != nil {
 			panic(err)
 		}
-		seedsUint[i] = uint(s)
+		r, err := strconv.Atoi(seeds[i+1])
+		if err != nil {
+			panic(err)
+		}
+		for k := s; k < s+r; k++ {
+			seedsUint = append(seedsUint, uint(k))
+		}
 	}
 	return seedsUint
 }
