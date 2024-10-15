@@ -119,8 +119,13 @@ func applyTransformation(d, s, ran uint64, r urange) ([]urange, urange) {
 		}
 	} else { // s and s+ran are in the range, so splitting twice to get the transformed one in the middle
 		bis := r.split(s)
+		if !r.isNul() {
+			untouched = append(untouched, r)
+		}
 		ter := bis.split(s + ran)
-		untouched = append(untouched, r, ter)
+		if !ter.isNul() {
+			untouched = append(untouched, ter)
+		}
 		bis.transform(s, d)
 		return untouched, bis
 	}
@@ -144,7 +149,7 @@ func (r *urange) isIn(k uint64) bool {
 // split splits the range on k. If k is not in the range (k < min or k >= max), it returns a nul range.
 // k becomes the max of the actual range, and so not included, and the minimum of the returned range.
 func (r *urange) split(k uint64) (bis urange) {
-	if k < r.min && k >= r.max { // k is not in range
+	if !r.isIn(k) { // k is not in range
 		return bis
 	} else { // k is in range
 		bis.min, bis.max = k, r.max
