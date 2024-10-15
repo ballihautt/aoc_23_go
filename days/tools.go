@@ -38,6 +38,28 @@ func extractNumber(s string, i int) int {
 	return ret
 }
 
+// getNumbers extracts a number list from a line, separated by spaces, and eventually beginning with a line Id
+func getNumbers(line string) []uint64 {
+	line = trimId(line)
+	line = strings.Trim(line, " ")
+
+	stringNumbers := strings.Split(line, " ")
+
+	var numbers []uint64 = make([]uint64, 0, len(stringNumbers))
+	for _, sn := range stringNumbers {
+		if sn == "" {
+			continue
+		}
+		n, err := strconv.Atoi(sn)
+		if err != nil {
+			panic("Trying to convert a not all digits string")
+		}
+		numbers = append(numbers, uint64(n))
+	}
+
+	return numbers
+}
+
 func trimId(line string) string {
 	dotIdx := strings.Index(line, ":") // gets the index of ':' so the beginning can be trimmed.
 	if dotIdx != -1 {
