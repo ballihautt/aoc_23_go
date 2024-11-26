@@ -57,6 +57,8 @@ func main() {
 		days.Day05(input)
 	case 6:
 		days.Day06(input)
+	case 7:
+		days.Day07(input)
 	default:
 		fmt.Printf("Day number %d is not implemented yet\n", exercise)
 	}
