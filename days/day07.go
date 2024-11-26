@@ -88,6 +88,7 @@ func handLevel(hand string) uint16 {
 	}
 
 	max += chars['J']
+	delete(chars, 'J')
 
 	switch max {
 	case 5:
